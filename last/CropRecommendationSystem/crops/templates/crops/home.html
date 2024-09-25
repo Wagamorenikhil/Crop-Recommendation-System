@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Crop Recommendation System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: black; /* Black background color */
+            color: white; /* White text color for better readability on black background */
+            padding: 20px;
+        }
+        h1 {
+            color: #fff; /* White text color for the heading */
+            text-align: center;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+            background-color: silver; /* Silver background color for list items */
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+            color: black; /* Black text color for list items for better readability on silver background */
+        }
+        li:hover {
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <h1>Crop Recommendation System</h1>
+    <a href="{% url 'create_season' %}">Create New Season</a>
+    <ul>
+        {% for season in seasons %}
+            <li>
+                <a href="{% url 'season_detail' season.id %}" style="color: #007bff;">{{ season.name }}</a> |
+                <a href="{% url 'update_season' season.id %}" style="color: #007bff;">Edit</a> |
+                <a href="{% url 'delete_season' season.id %}" style="color: #007bff;">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

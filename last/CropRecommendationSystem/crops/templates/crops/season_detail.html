@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Crops for {{ season.name }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, silver, black);
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+            margin-bottom: 10px;
+        }
+        li:hover {
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+        .actions {
+            float: right;
+        }
+        .actions a {
+            color: #dc3545;
+            margin-left: 10px;
+        }
+        .actions a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Crops for {{ season.name }}</h1>
+    <a href="{% url 'create_crop' season.id %}">Add New Crop</a>
+    <ul>
+        {% for crop in crops %}
+            <li>
+                {{ crop.name }}: {{ crop.description }}
+                <span class="actions">
+                    <a href="{% url 'update_crop' season.id crop.id %}">Edit</a>
+                    <a href="{% url 'delete_crop' season.id crop.id %}">Delete</a>
+                </span>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'home' %}">Back to seasons</a>
+</body>
+</html>
